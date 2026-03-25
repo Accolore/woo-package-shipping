@@ -46,6 +46,11 @@ class WC_Shipping_Package_Duties extends WC_Shipping_Method {
 		$this->init_form_fields();
 		$this->init_settings();
 
+		// $this->title is the instance label WooCommerce displays in the zone
+		// methods list and at checkout. It must be set explicitly after
+		// init_settings() so it reflects the saved value (or the default).
+		$this->title = $this->get_option( 'title', __( 'Package Shipping + Duties', 'woo-package-shipping' ) );
+
 		// Persist settings when saved from the admin panel.
 		add_action(
 			'woocommerce_update_options_shipping_' . $this->id,
